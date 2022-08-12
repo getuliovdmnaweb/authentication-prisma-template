@@ -3,7 +3,7 @@ const { UserModel } = require("../models");
 const validateEmail = async (req, res, next) => {
   const { email } = req.body;
 
-  const user = UserModel.find((user) => user.email === email);
+  const user = await UserModel.findByEmail(email);
 
   if (user) {
     return res.status(400).json({
