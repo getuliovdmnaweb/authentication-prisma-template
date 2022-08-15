@@ -1,7 +1,11 @@
 const { Router } = require("express");
 
 const { AuthController } = require("../controllers");
-const { validateCredentials, validateEmail } = require("../validators");
+const {
+  validateCredentials,
+  validateEmail,
+  validatePassword,
+} = require("../validators");
 
 const router = Router();
 
@@ -12,6 +16,11 @@ router.post(
   AuthController.signup
 );
 
-router.post("/login", validateCredentials, AuthController.login);
+router.post(
+  "/login",
+  validateCredentials,
+  validatePassword,
+  AuthController.login
+);
 
 module.exports = router;

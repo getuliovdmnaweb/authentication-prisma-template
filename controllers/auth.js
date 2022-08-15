@@ -17,7 +17,19 @@ const signup = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  res.send("User is loging in");
+  const userToLog = req.userToLog;
+
+  try {
+    const token = await UserService.login(userToLog);
+    res.status(201).json({
+      message: "User logged in successfully",
+      token,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: error.message,
+    });
+  }
 };
 module.exports = {
   signup,
