@@ -1,4 +1,8 @@
 module.exports = (role) => (req, res, next) => {
-  console.log("Authorization Middleware", role);
+  if (req.user.role !== role) {
+    return res.status(403).json({
+      message: "User is not authorized to access this resource!",
+    });
+  }
   next();
 };

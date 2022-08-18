@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { LOGIN_TOKEN } = process.env;
+const { LOGIN_HASH } = process.env;
 
 const hashPassword = (password) => {
   const salt = bcrypt.genSaltSync(10);
@@ -18,7 +18,7 @@ const generateToken = (email, role) => {
       email,
       role,
     },
-    LOGIN_TOKEN,
+    LOGIN_HASH,
     { expiresIn: "1h" }
   );
   return token;
