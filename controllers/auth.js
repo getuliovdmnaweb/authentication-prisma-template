@@ -18,7 +18,7 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   const userToLog = req.userToLog;
-  console.log(userToLog);
+
   try {
     const token = await UserService.login(userToLog);
     res.status(201).json({

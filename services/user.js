@@ -14,8 +14,8 @@ const createUser = async ({ name, email, password }) => {
 };
 
 const login = async (userToLog) => {
-  const { email, role } = userToLog;
-  const token = generateToken(email, role);
+  const { name, email, role } = userToLog;
+  const token = generateToken({ name, email, role });
   return token;
 };
 

@@ -12,9 +12,10 @@ const comparePassword = (password, dbPassword) => {
   return bcrypt.compareSync(password, dbPassword);
 };
 
-const generateToken = (email, role) => {
+const generateToken = ({ name, email, role }) => {
   const token = jwt.sign(
     {
+      name,
       email,
       role,
     },
