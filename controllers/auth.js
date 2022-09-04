@@ -1,10 +1,10 @@
 const { UserService } = require("../services");
 
 const signup = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
-    const createdUser = await UserService.createUser({ email, password });
+    const createdUser = await UserService.createUser({ name, email, password });
     res.status(201).json({
       message: "User created successfully",
       createdUser,
@@ -18,7 +18,7 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   const userToLog = req.userToLog;
-
+  console.log(userToLog);
   try {
     const token = await UserService.login(userToLog);
     res.status(201).json({
